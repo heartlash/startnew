@@ -1,0 +1,2 @@
+-> For this to run install mongodb on your system, create a database "sedb"
+-> Text if you run into errors

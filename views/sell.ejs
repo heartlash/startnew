@@ -1,0 +1,98 @@
+<html>
+<head>
+	<title>Home Page</title>
+	<style>
+		body {
+  			margin: 0;
+  			font-family: 'Open Sans', sans-serif;
+  			font-size: 14px; 
+  			font-style: normal; 
+  			font-variant: normal;
+			}
+
+		.topnav {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			float: right;
+			width: 1350px;
+			height: 81px;
+			position: -webkit-sticky;
+			position: sticky;
+			top: 0;
+ 			padding: 5px;
+  			background-color: white;
+			}
+
+		.topnav a {
+			float: right;
+  			color: black;
+  			text-align: center;
+  			padding: 14px 16px;
+  			text-decoration: none;
+  			font-size: 18px;
+			}
+
+		.topnav a:hover {
+  			color: #4a77d4;
+			}
+
+		.topnav a.active {
+  			color: black;
+			}	
+
+		.logo{
+			float: left;
+			top: 0;
+			width: 10px;
+			height: 5px;
+			position: sticky;
+			}
+
+		.main{
+    		text-align: center;
+    		color: black;
+			}
+
+		.rest{
+			background-color: #404144;
+			}
+
+		.info{
+			padding: 40px;
+			}
+
+		li{
+			font-style: italic;
+			font-family: garamond;
+			font-size: 20px;
+			text-align: left;
+			}
+
+	</style>
+</head>
+
+<body>
+
+<div class="topnav">
+		<a href="home3.html" style="float: left; position: sticky; top: 0;"><img src="images/logo.png" alt="Logo" height="65" width="130"></a>
+		<a href="">About</a>
+		<a href="">Contact</a>
+		<a href="http://localhost:4000/buy">Buy Products</a>
+		<a href="http://localhost:4000/sell">Post Ad</a>
+		<a href="">Announcements</a>
+		<a href="http://localhost:4000/forum">Forum</a>
+  		<a href="http://localhost:4000/register">Login/Register</a>
+		</div>
+		
+	<%if(locals.user) { %> <h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a> <% }  %>
+	<h1>You can post an ad here</h1>
+	<form action = "/sell" method = "post" enctype = "multipart/form-data">
+		<input type = "file" name = "image"></input>
+		<input type = "text" name = "item"></input>
+		<input type = "hidden" name = "seller" value = "<%=user.username%>"</input>
+		<textarea name = "description"></textarea>
+		<input type = "submit" name = "submit" value = "submit"></input>
+	</form>
+	
+</body>
+
+</html>

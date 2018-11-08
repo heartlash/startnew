@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<style>
+		body {
+  			margin: 0;
+  			font-family: 'Open Sans', sans-serif;
+  			font-size: 14px; 
+  			font-style: normal; 
+  			font-variant: normal;
+			}
+
+		.topnav {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			float: right;
+			width: 1350px;
+			height: 81px;
+			position: -webkit-sticky;
+			position: sticky;
+			top: 0;
+ 			padding: 5px;
+  			background-color: white;
+			}
+
+		.topnav a {
+			float: right;
+  			color: black;
+  			text-align: center;
+  			padding: 14px 16px;
+  			text-decoration: none;
+  			font-size: 18px;
+			}
+
+		.topnav a:hover {
+  			color: #4a77d4;
+			}
+
+		.topnav a.active {
+  			color: black;
+			}	
+
+		.logo{
+			float: left;
+			top: 0;
+			width: 10px;
+			height: 5px;
+			position: sticky;
+			}
+
+		.main{
+    		text-align: center;
+    		color: black;
+			}
+
+		.rest{
+			background-color: #404144;
+			}
+
+		.info{
+			padding: 40px;
+			}
+
+		li{
+			font-style: italic;
+			font-family: garamond;
+			font-size: 20px;
+			text-align: left;
+			}
+
+	</style>
+</head>
+<body>
+		<div class="topnav">
+		<a href="home3.html" style="float: left; position: sticky; top: 0;"><img src="images/logo.png" alt="Logo" height="65" width="130"></a>
+		<a href="">About</a>
+		<a href="">Contact</a>
+		<a href="http://localhost:4000/buy">Buy Products</a>
+		<a href="http://localhost:4000/sell">Post Ad</a>
+		<a href="">Announcements</a>
+		<a href="http://localhost:4000/forum">Forum</a>
+  		<a href="http://localhost:4000/register">Login/Register</a>
+		</div>
+	<div>
+	<div class="main">
+		<img src="images/grad20.jpg" alt="Homepage">
+		<div class="info">
+			<p style="font-size: 30px;">Interconnecting Students, Faculty members and Authorities.</p>
+			<br><br>
+			<div style="float:left; padding:10px;">
+			<img src="images/connection.jpg" alt="Interconnectivity" style="width: 400px; height: 400px; float: left;">
+			</div>
+			<div style="float:left;padding:40px;">
+				<ul>
+					<li>Students can raise issues or debate about pre-existing issues <br>among themselves and also with the college authority.</li>
+					<br><br>
+					<li>Authorities can post various announcements either related to <br>academics or co-curricular events. These can be viewed by<br> students with the help of a single button click.</li>
+					<br><br>
+					<li>Students can buy and sell second-hand products like books,<br> sports equipment etc. This will ensure that they are able to<br> buy/sell goods at reasonable prices since there is no middle<br>man involved.</li>
+					<br><br>
+					<li>The transactions required in the process will be carried out <br>when they meet personally</li>
+				</ul>
+			</div>	
+		</div>
+		<div class="rest">
+		</div>
+	</div>
+	<div style="float: left; padding: 30px; background-color: #404144; width: 1350px;">
+		<h2 style="color: #4a77d4; font-size: 30px; text-align: center;"><%if(locals.user) { %> <h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a> <% }  %>
+		
+		<p style="color: white; text-align: center;">Don't forget to follow us via our social media profiles and keep up with our latest news.</p>
+		<div>
+			<a href="" style="position: absolute; left: 44%;"><img src="fb.png" hieght="50" width="50" alt="Fb"></a>
+			<a href="" style="position: absolute; left: 48%;"><img src="twitter.jpg" hieght="50" width="50" alt="Twitter"></a>
+			<a href="" style="position: absolute; left: 52%;"><img src="g+.png" hieght="50" width="50" alt="g+"></a>
+			<a href="" style="position: absolute; left: 56%;"><img src="linkedin.png" hieght="50" width="50" alt="Linkedin"></a>
+		</div>
+	</div>
+</body>
+</html>

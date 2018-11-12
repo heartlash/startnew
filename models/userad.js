@@ -19,7 +19,7 @@ var useradschema = mongoose.Schema({
 	},
 
 
-}, timestamps : true);
+});
 
  module.exports = mongoose.model('userad', useradschema);
  module.exports.postad = function(newad, callback){

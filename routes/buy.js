@@ -15,11 +15,13 @@ buyrouter.get('/', (req, res) =>{
 		items = [];
 		descriptions = [];
 		sellers = [];
+		ids = [];
 		for(var result of results){
 			images.push(result.image)
 			items.push(result.item)
 			descriptions.push(result.description)
 			sellers.push(result.seller)
+			ids.push(result._id)
 		}
 		console.log("images here : ", images);
 		res.render("buy.ejs", {
@@ -27,7 +29,8 @@ buyrouter.get('/', (req, res) =>{
 			user : req.user,
 			items : items,
 			descriptions : descriptions,
-			sellers : sellers
+			sellers : sellers,
+			ids : ids
 		});
 	});
 	

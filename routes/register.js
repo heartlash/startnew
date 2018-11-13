@@ -11,14 +11,14 @@ registerrouter.get('/', (req, res) =>{
 
 registerrouter.post('/adduser', function(req, res){
 	console.log('POST /adduser');
-	var fname = req.body.fname;
-	var lname = req.body.lname;
+	var username = req.body.username;
+	var name = req.body.name;
 	var email = req.body.email;
 	var password = req.body.password;
 
 	var newuser = new users({
-		fname : fname,
-		lname : lname,
+		username : username,
+		name : name,
 		email : email,
 		password : password
 	});

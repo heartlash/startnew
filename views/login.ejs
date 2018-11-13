@@ -62,11 +62,26 @@
 	</style>
 
 </head>
+
+
+		
+	<%if(locals.user) { %> <h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a> <div class="topnav">
+		<a href="home3.html" style="float: left; position: sticky; top: 0;"><img src="images/logo.png" alt="Logo" height="65" width="130"></a>
+		<a href="">About</a>
+		<a href="">Contact</a>
+		<a href="http://localhost:4000/buy">Buy Products</a>
+		<a href="http://localhost:4000/sell">Post Ad</a>
+		<a href="">Announcements</a>
+		<a href="http://localhost:4000/dashboard/chat">Chat</a>
+  		
+		</div><% }  %>
 <body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
 	<div class="login">
 	<h1>Login</h1>
-	<form name="myform" name="myform">
-		<input ng-model="emailaddr" required="true" id="email" autofocus="true" type="email" placeholder="Enter your Email-id" name="email" ng-model="mail"/><span ng-show="myform.myaddr.$error.email"/>Not a valid e-mail address</span>
+	<form name="myform" name="myform" method="post" action="/login">
+		<!--<input ng-model="emailaddr" required="true" id="email" autofocus="true" type="email" placeholder="Enter your Email-id" name="email" ng-model="mail"/><span ng-show="myform.myaddr.$error.email"/>Not a valid e-mail address</span>
+		-->
+		<input ng-model="emailaddr" required="true" id="email" autofocus="true" type="text" placeholder="Enter your Email-id" name="email" ng-model="mail"/>
 		<br><br>
 		 <input ng-model="password" required="true" id ="password" type="{{ typePassword ? 'text' : 'password' }}" name="password" placeholder="Enter your Password" ng-style="checkpwdStrength" ng-model="userPassword" ng-change="validationInputPwdText(userPassword)"/>
 		<br><br>
@@ -74,7 +89,7 @@
 		<br><br>
 		<p>{{message.data}}</p>
 		<button id="loginbutt" ng-disabled="myform.$invalid" ng-model="login" class="btn btn-primary btn-block btn-large">Login</button>
-		<p style="font-size: 100%;color: black;text-align: center;"> New User ? <a href="signup2.html" style="color: black;">Signup</a> </p>
+		<p style="font-size: 100%;color: black;text-align: center;"> New User ? <a href="http://localhost:4000/register" style="color: black;">Signup</a> </p>
 	</form>
 	</div>
 </body>

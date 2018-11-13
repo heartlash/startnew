@@ -9,7 +9,7 @@ function isloggedin(req, res, next){
 		user = jwt.decode(req.cookies.setok, secret);
 		console.log('user : ', user);
 		req.user = {
-			username : user.email
+			username : user.username
 		};
 	}
 
@@ -40,7 +40,7 @@ function authenticate(req, res, next){
 	}
 
 	req.user = {
-		username : user.email
+		username : user.username
 	};
 	next();
 }
@@ -54,20 +54,22 @@ function generatepassword(plainpass){
 function authorize(user, callback){
 	var users = require('../models/users');
 	console.log(user.email);
-	users.findOne({
-		email : user.email
-	}, (err, res) =>{
+	users.findOne({$or:[{email : user.email},{username : user.email}]
+		
+	} , (err, res) =>{
 		if(err) throw err;
 		var saltkey = res.password.split('+');
 		if(!matchpassword(user.password, saltkey[0], saltkey[1])){
 			callback('not found', null);
 		}
 		else{
-			users.findOne({email : user.email}, (err, res) => {
+			users.findOne({$or:[{email : user.email},{username : user.email}]
+		
+	} , (err, res) => {
 				if(err) throw err;
 
 				console.log("printing id : ", res._id);
-				callback(null, generatetoken(user.email, res._id));
+				callback(null, generatetoken(user.email, res._id, res.username));
 
 
 			});
@@ -83,11 +85,11 @@ function matchpassword(plainpass, salt, key){
 	return key == derivedkey;
 }
 
-function generatetoken(email, id){
+function generatetoken(email, id, username){
 	var token = jwt.encode({
-		email : email
+		username : username
 	}, secret);
-	return {token : token, id : id};
+	return {token : token, id : id, username : username};
 }
 
 module.exports = {

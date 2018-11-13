@@ -3,7 +3,8 @@ var express = require('express');
 var bodyparser = require('body-parser');
 var cookieparser = require('cookie-parser');
 var requiredir = require('require-dir');
-
+var client = require('socket.io').listen(5000).sockets;
+var chats = require('./models/chats');
 var routes = requiredir('./routes');
 var auth = require('./middleware/auth');
 var mongoose = require('mongoose');
@@ -50,5 +51,15 @@ app.get('/', (req, res, next) => {
 
 
 app.listen(4000);
+
+//for the chat socket.io
+
+client.on('connection', function(socket){
+
+	socket.on("chat", function(data){
+		client.sockets.emit("chat", data);
+	});
+});
+
 
 

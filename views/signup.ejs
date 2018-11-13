@@ -66,8 +66,8 @@
 	<div class="login">
 	<h1>Signup</h1>
 	<form name="myform" name="myform" method="post" action="/register/adduser">
-		<input ng-model="fname" required="true" autofocus="true" type="text" placeholder="Enter your First-name" name="fname"/>
-		<input ng-model="lname" required="true" autofocus="true" type="text" placeholder="Enter your Last-name" name="lname"/>
+		<input ng-model="fname" required="true" autofocus="true" type="text" placeholder="Enter your username" name="username"/>
+		<input ng-model="lname" required="true" autofocus="true" type="text" placeholder="Enter your Full name" name="name"/>
 		<input ng-model="email" required="true" autofocus="true" type="email" placeholder="Enter your Email-id" name="email" ng-model="mail"/><span ng-show="myform.myaddr.$error.email"/>Not a valid e-mail address</span>
 		 <input ng-model="pass" required="true" type="{{ typePassword ? 'text' : 'password' }}" name="password" placeholder="Enter your Password" ng-style="checkpwdStrength" ng-model="userPassword" ng-change="validationInputPwdText(userPassword)"/>
 		<br><br>

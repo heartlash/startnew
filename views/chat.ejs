@@ -84,19 +84,35 @@
 		<a href="http://localhost:4000/dashboard/chat">Chat</a>
   		<a href="http://localhost:4000/register">Login/Register</a>
 		</div>
-<%if(locals.user) { %> <h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a> <% }  %>
+<h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a>
 
-<h1 style="text-align: center;">All the chats appear here</h1>
+<h1 style="text-align: center;">All the chats appear here : <%=user.username%></h1>
 
-<% for(var  chat of chats){
-	%> 
+<!--
 		<div style="background-color: white; width: 200px; height: 150px; margin:0 auto; border-radius: 25px; border: 2px solid #73AD21; padding: 20px;">
-		
-	   <h1 style="text-align: center;"><%=chat.sender%></h1>
-	   <% for()>
+-->
+
+<%
+shown = [] 
+for(var  chat of chats){
+	
+	if(chat.sender!= user.username){
+		if(!shown.includes(chat.sender)){
+		%><a href = "http://localhost:4000/dashboard/chat/<%=chat.sender%>"><h2><%=chat.sender%></h2></a><%
+		shown.push(chat.sender)
+		}
+	}	
+
+	if(chat.receiver!= user.username){
+		if(!shown.includes(chat.receiver)){
+		%><a href = "http://localhost:4000/dashboard/chat/<%=chat.receiver%>"><h2><%=chat.receiver%></h2></a><%
+		shown.push(chat.receiver)
+		}
 	   
-	   </div>
-	<%}
+	}
+
+	}
+
 %>
 
 </body>

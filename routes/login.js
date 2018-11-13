@@ -23,8 +23,10 @@ loginrouter.post('/', (req, res) =>{
 			res.json({
 				success : true,
 				token : result.token,
-				id : result.id
+				id : result.id,
+				username : result.username
 			});
+			
 		}
 	});
 });

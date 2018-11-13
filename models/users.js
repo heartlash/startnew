@@ -2,11 +2,11 @@
  var auth = require('../middleware/auth');
  var userschema = mongoose.Schema({
 
- 	fname : {
+ 	username : {
  		type : String,
  		required : true
  	},
- 	lname : {
+ 	name : {
  		type : String,
  		required : true
  	},

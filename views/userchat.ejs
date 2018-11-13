@@ -1,5 +1,58 @@
+<!DOCTYPE html>
 <html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <title>></title>
+</head>
 <body>
-<h1> Users chat page</h1>
-<body>
-<html>
+
+<h1>Logged in : <%=user.username%></h1>
+<h2>Send to : <%=user1.username%></h2>
+
+<h1>ChatWindow</h1>
+
+<% for(var chat of chats){
+    if(chat.sender==user.username){
+        
+        %><h2>You : <%=chat.message%></h2>
+        <%
+    }
+
+    if(chat.sender==user1.username){
+        
+        %><h2><%=user1.username%> : <%=chat.message%></h2>
+        <%
+    }
+}
+
+%>
+<input type = "hidden" id ="loggedinuser" name = "loggedinuser"></input>
+<input type = "hidden" id ="notloggedinuser" name = "notloggedinuser"></input>
+<textarea id = "messagebox" name = "messagebox"></textarea>
+<button id = "sendbutton" name = "sendbutton">send</button>
+
+
+<script>
+
+var socket = io.connect("http://localhost:5000");
+var message = document.getElementById('messagebox').value;
+var sender = document.getElementById('loggedinuser').value;
+var receiver = document.getElementById('notloggedinuser').value;
+
+var sendbutt = document.getElementById('sendbutton');
+
+
+sendbutt.addEventListener("click", function(){
+	socket.emit("click", {sender : sender, message : message,
+		receiver : receiver})
+});
+
+
+
+
+</script>
+</body>
+</html>
+
+

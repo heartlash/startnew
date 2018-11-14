@@ -3,7 +3,6 @@ var express = require('express');
 var bodyparser = require('body-parser');
 var cookieparser = require('cookie-parser');
 var requiredir = require('require-dir');
-var client = require('socket.io').listen(5000).sockets;
 var chats = require('./models/chats');
 var routes = requiredir('./routes');
 var auth = require('./middleware/auth');
@@ -53,13 +52,30 @@ app.get('/', (req, res, next) => {
 app.listen(4000);
 
 //for the chat socket.io
+var mongojs = require('mongojs');
+var db = mongojs("mongodb://127.0.0.1:27017/sedb",['chats']);
+console.log("socket db set to go");
+var socket = require('socket.io');
+var sockapp = express();
 
-client.on('connection', function(socket){
-
-	socket.on("chat", function(data){
-		client.sockets.emit("chat", data);
-	});
+var sockserver = sockapp.listen(5000, function(){
+	console.log("the socket is listening");
 });
 
+var io = socket(sockserver);
 
+io.on('connection', function(socket){
+	console.log("socket id : ", socket.id);
+	socket.on("chat", function(data){
+		console.log("data : ", data);
+		db.chats.save(data, function(err, result){
+			if(err) throw err;
+			console.log("chat successfully inserted");
+		})
+		io.sockets.emit("chat", data);
+	});
 
+	socket.on("typing", function(data){
+		socket.broadcast.emit("typing", data);
+	});
+});

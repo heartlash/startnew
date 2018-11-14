@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <title>></title>
 </head>
 <body>
@@ -27,28 +27,44 @@
 }
 
 %>
-<input type = "hidden" id ="loggedinuser" name = "loggedinuser"></input>
-<input type = "hidden" id ="notloggedinuser" name = "notloggedinuser"></input>
-<textarea id = "messagebox" name = "messagebox"></textarea>
+<input type = "hidden" id ="loggedinuser" name = "loggedinuser" value ="<%=user.username%>"</input>
+<input type = "hidden" id ="notloggedinuser" name = "notloggedinuser" value ="<%=user1.username%>"</input>
+<div id = "output"></div>
+<div id ="typing"></div>
+<input type ="message" id = "messagebox" name = "messagebox"/>
+
 <button id = "sendbutton" name = "sendbutton">send</button>
 
 
 <script>
 
-var socket = io.connect("http://localhost:5000");
-var message = document.getElementById('messagebox').value;
-var sender = document.getElementById('loggedinuser').value;
-var receiver = document.getElementById('notloggedinuser').value;
+var socket = io.connect("http://192.168.31.161:5000");
+var message = document.getElementById('messagebox');
+var sender = document.getElementById('loggedinuser');
+var receiver = document.getElementById('notloggedinuser');
 
 var sendbutt = document.getElementById('sendbutton');
-
+var output = document.getElementById('output');
+var typing = document.getElementById('typing');
 
 sendbutt.addEventListener("click", function(){
-	socket.emit("click", {sender : sender, message : message,
-		receiver : receiver})
+	socket.emit("chat", {sender : sender.value, message : message.value,
+		receiver : receiver.value, time : Date.now()});
 });
 
+socket.on("chat", function(data){
+    typing.innerHTML = "";
+	output.innerHTML += '<p><strong>' + data.sender + ':</strong>' + data.message + '</p>';
 
+});
+
+message.addEventListener("keydown", function(){
+    socket.emit("typing", sender.value);
+});
+
+socket.on("typing", function(data){
+    typing.innerHTML = '<p><em>' + data + ' is typing....' + '<em></p>';
+});
 
 
 </script>

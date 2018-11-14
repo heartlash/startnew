@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<title>Announcements</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
+
+<div class="w3-top">
+  <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
+    <a href="home2.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
+    <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sell Products</a>
+    <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Chats</a>
+    <a href="main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+    <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Announcements</a>
+    <%if(locals.user) { %> <a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
+    
+  </div>
+</div>
+
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
+  <p class="w3-xlarge">ANNOUNCEMENTS</p>
+ 
+</header>
+
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="login">
+    <h2>14-11-2018 : No classes to be held today on account of Childrens' Day</h2>
+    <h5>There will be donation camps set up in B and F blocks with a aim of helping children in need. Active participation would be appreciated. Also, there will be multiple events such as painting, singing, etc for students. </h5>
+    <h2>13-11-2018 : Classes to be held on Saturday 17-11-2018</h2>
+    <h5>This is to bring to the kind notice as per the directions of Hon'ble Vice-Chancellor, the classes will run according to Monday's timetable on 17th November, 2018 (Saturday) and PTM-2 scheduled on that may be held from 3:30 PM onwards i.e after classes.</h5>
+    <h2>12-11-2018 : College to remain shut today</h2>
+    <h5>As per the directions of state government the college will remain closed as a mark of respect to the sad demise of union minister Mr. Anant Kumar</h5>
+
+   
+    </div>
+   </div>
+</div>
+
+   
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity"> 
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="www.pes.edu/">PES University</a></p>
+</footer>
+
+
+
+</body>
+
+</html>

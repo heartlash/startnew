@@ -20,13 +20,14 @@ loginrouter.post('/', (req, res) =>{
 				httpOnly : true
 			});
 
-			res.json({
+			/*res.json({
 				success : true,
 				token : result.token,
 				id : result.id,
 				username : result.username
 			});
-			
+			*/
+			res.redirect('/dashboard');
 		}
 	});
 });

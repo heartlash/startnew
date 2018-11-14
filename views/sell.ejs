@@ -1,213 +1,85 @@
-<html>
-<head>
-	<title>SELL</title>
-	<style>
-		body {
-        background-color: #92a8d1;
-  			margin: 0;
-  			font-family: 'Open Sans', sans-serif;
-  			font-size: 14px; 
-  			font-style: normal; 
-  			font-variant: normal;
-			}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<title>Sell Products</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
 
-		.topnav {
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			float: right;
-			width: 1350px;
-			height: 81px;
-			position: -webkit-sticky;
-			position: sticky;
-			top: 0;
- 			padding: 5px;
-  			background-color: white;
-			}
-
-		.topnav a {
-			float: right;
-  			color: black;
-  			text-align: center;
-  			padding: 14px 16px;
-  			text-decoration: none;
-  			font-size: 18px;
-			}
-
-		.topnav a:hover {
-  			color: #4a77d4;
-			}
-
-		.topnav a.active {
-  			color: black;
-			}	
-
-		.logo{
-			float: left;
-			top: 0;
-			width: 10px;
-			height: 5px;
-			position: sticky;
-			}
-
-		html { height: 100% }
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
-
-.login {
-  background: #eceeee;
-  border: 1px solid #42464b;
-  border-radius: 6px;
-  height: 257px;
-  margin: 20px auto 0;
-  width: 298px;
-}
-.login h1 {
-  background-image: linear-gradient(top, #f1f3f3, #d4dae0);
-  border-bottom: 1px solid #a6abaf;
-  border-radius: 6px 6px 0 0;
-  box-sizing: border-box;
-  color: #727678;
-  display: block;
-  height: 43px;
-  font: 600 14px/1 'Open Sans', sans-serif;
-  padding-top: 14px;
-  margin: 0;
-  text-align: center;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.2), 0 1px 0 #fff;
-}
-input[type="password"], input[type="text"] {
-  background: url('http://i.minus.com/ibhqW9Buanohx2.png') center left no-repeat, linear-gradient(top, #d6d7d7, #dee0e0);
-  border: 1px solid #a1a3a3;
-  border-radius: 4px;
-  box-shadow: 0 1px #fff;
-  box-sizing: border-box;
-  color: #696969;
-  height: 39px;
-  margin: 31px 0 0 29px;
-  padding-left: 37px;
-  transition: box-shadow 0.3s;
-  width: 240px;
-}
-input[type="password"]:focus, input[type="text"]:focus {
-  box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
-  outline: 0;
-}
-.show-password {
-  display: block;
-  height: 16px;
-  margin: 26px 0 0 28px;
-  width: 87px;
-}
-input[type="checkbox"] {
-  cursor: pointer;
-  height: 16px;
-  opacity: 0;
-  position: relative;
-  width: 64px;
-}
-input[type="checkbox"]:checked {
-  left: 29px;
-  width: 58px;
-}
-.toggle {
-  display: block;
-  height: 16px;
-  margin-top: -20px;
-  width: 87px;
-  z-index: -1;
-}
-input[type="checkbox"]:checked + .toggle { background-position: 0 -16px }
-.forgot {
-  color: #7f7f7f;
-  display: inline-block;
-  float: right;
-  font: 12px/1 sans-serif;
-  left: -19px;
-  position: relative;
-  text-decoration: none;
-  top: 5px;
-  transition: color .4s;
-}
-.forgot:hover { color: #3b3b3b }
-input[type="submit"] {
-  width:240px;
-  height:35px;
-  display:block;
-  font-family:Arial, "Helvetica", sans-serif;
-  font-size:16px;
-  font-weight:bold;
-  color:#fff;
-  text-decoration:none;
-  text-transform:uppercase;
-  text-align:center;
-  text-shadow:1px 1px 0px #37a69b;
-  padding-top:6px;
-  margin: 29px 0 0 29px;
-  position:relative;
-  cursor:pointer;
-  border: none;  
-  background-color: #37a69b;
-  background-image: linear-gradient(top,#3db0a6,#3111);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius:5px;
-  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #497a78, 0px 10px 5px #999;
-}
-
-.shadow {
-  background: #000;
-  border-radius: 12px 12px 4px 4px;
-  box-shadow: 0 0 20px 10px #000;
-  height: 12px;
-  margin: 30px auto;
-  opacity: 0.2;
-  width: 270px;
-}
+<div class="w3-top">
+  <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
+    <a href="http://localhost:4000/dashboard" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
+    <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Sell Products</a>
+    <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Chats</a>
+    <a href="main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+    <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Announcements</a>
+    <%if(locals.user) { %> <a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
+    
+  </div>
+</div>
 
 
-input[type="submit"]:active {
-  top:3px;
-  box-shadow: inset 0px 1px 0px #2ab7ec, 0px 2px 0px 0px #31524d, 0px 5px 3px #999;
-}
-	
-.login h1 { color: black; text-align:center; }	
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
+  <p class="w3-xlarge">SELL PRODUCTS</p>
+ 
+</header>
 
-.login textarea { display: block;
-                  margin-left: auto;
-                  margin-right: auto;
-                  font-size: 12px;
-                }
-	</style>
-}
-</head>
 
-<body>
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="login">
+    <h1>Post Product</h1>
 
-<div class="topnav">
-		<a href="home3.html" style="float: left; position: sticky; top: 0;"><img src="images/logo.png" alt="Logo" height="65" width="130"></a>
-		<a href="">About</a>
-		<a href="">Contact</a>
-		<a href="http://localhost:4000/buy">Buy Products</a>
-		<a href="http://localhost:4000/sell">Post Ad</a>
-		<a href="">Announcements</a>
-		<a href="http://localhost:4000/dashboard/chat">Chat</a>
-  		<a href="http://localhost:4000/register">Login/Register</a>
-		</div>
-		
-	<%if(locals.user) { %> <h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a> <% }  %>
 
-	<div class="login" style="background-color: hsla(89, 43%, 51%, 0.3);">
-    <h1>You can post an ad here</h1>
-	<form action = "/sell" method = "post" enctype = "multipart/form-data">
-		<input type = "file" name = "image" placeholder="image" style="display: block; margin : 0 auto;"></input>
-		<input type = "text" name = "item" placeholder="Enter the itemname"></input>
+    <form action = "/sell" method = "post" enctype = "multipart/form-data">
+    
+    <input type = "text" name = "item" placeholder="Enter the itemname"></input>
     <br>
-		<input type = "hidden" name = "seller" placeholder="seller" value = "<%=user.username%>"></input>
+    <input type = "hidden" name = "seller" placeholder="seller" value = "<%=user.username%>"></input>
     <br>
-		<textarea name = "description" placeholder="Enter description"></textarea>
-		<input type = "submit" name = "submit" value = "submit"></input>
-	</form>
-	</div>
+    <textarea name = "description" placeholder="Enter description"></textarea>
+    <br><br>
+    <input type = "file" name = "image" placeholder="image"></input>
+    <br><br>
+    <input type = "submit" name = "submit" value = "Submit"></input>
+  </form>
+   
+    </div>
+   </div>
+</div>
+
+   
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity"> 
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="www.pes.edu/">PES University</a></p>
+</footer>
+
+
+
 </body>
 
 </html>

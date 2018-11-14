@@ -1,120 +1,99 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Home Page</title>
-	<style>
-		body {
-  			margin: 0;
-  			font-family: 'Open Sans', sans-serif;
-  			font-size: 14px; 
-  			font-style: normal; 
-  			font-variant: normal;
-			}
-
-		.topnav {
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			float: right;
-			width: 1350px;
-			height: 81px;
-			position: -webkit-sticky;
-			position: sticky;
-			top: 0;
- 			padding: 5px;
-  			background-color: white;
-			}
-
-		.topnav a {
-			float: right;
-  			color: black;
-  			text-align: center;
-  			padding: 14px 16px;
-  			text-decoration: none;
-  			font-size: 18px;
-			}
-
-		.topnav a:hover {
-  			color: #4a77d4;
-			}
-
-		.topnav a.active {
-  			color: black;
-			}	
-
-		.logo{
-			float: left;
-			top: 0;
-			width: 10px;
-			height: 5px;
-			position: sticky;
-			}
-
-		.main{
-    		text-align: center;
-    		color: black;
-			}
-
-		.rest{
-			background-color: #404144;
-			}
-
-		.info{
-			padding: 40px;
-			}
-
-		li{
-			font-style: italic;
-			font-family: garamond;
-			font-size: 20px;
-			text-align: left;
-			}
-
-	</style>
-</head>
+<html lang="en">
+<title>College Community</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
 <body>
-		<div class="topnav">
-		<a href="home3.html" style="float: left; position: sticky; top: 0;"><img src="images/logo.png" alt="Logo" height="65" width="130"></a>
-		<a href="">About</a>
-		<a href="">Contact</a>
-		<a href="http://localhost:4000/buy">Buy Products</a>
-		<a href="http://localhost:4000/sell">Post Ad</a>
-		<a href="http://localhost:4000/dashboard/chat">Chat</a>
-		<a href="http://localhost:4000/forum">Forum</a>
-  		<a href="http://localhost:4000/register">Login/Register</a>
-		</div>
-	<div>
-	<div class="main">
-		<img src="images/grad20.jpg" alt="Homepage">
-		<div class="info">
-			<p style="font-size: 30px;">Interconnecting Students, Faculty members and Authorities.</p>
-			<br><br>
-			<div style="float:left; padding:10px;">
-			<img src="images/connection.jpg" alt="Interconnectivity" style="width: 400px; height: 400px; float: left;">
-			</div>
-			<div style="float:left;padding:40px;">
-				<ul>
-					<li>Students can raise issues or debate about pre-existing issues <br>among themselves and also with the college authority.</li>
-					<br><br>
-					<li>Authorities can post various announcements either related to <br>academics or co-curricular events. These can be viewed by<br> students with the help of a single button click.</li>
-					<br><br>
-					<li>Students can buy and sell second-hand products like books,<br> sports equipment etc. This will ensure that they are able to<br> buy/sell goods at reasonable prices since there is no middle<br>man involved.</li>
-					<br><br>
-					<li>The transactions required in the process will be carried out <br>when they meet personally</li>
-				</ul>
-			</div>	
-		</div>
-		<div class="rest">
-		</div>
-	</div>
-	<div style="float: left; padding: 30px; background-color: #404144; width: 1350px;">
-		<h2 style="color: #4a77d4; font-size: 30px; text-align: center;"><%if(locals.user) { %> <h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a> <% }  %>
-		
-		<p style="color: white; text-align: center;">Don't forget to follow us via our social media profiles and keep up with our latest news.</p>
-		<div>
-			<a href="" style="position: absolute; left: 44%;"><img src="fb.png" hieght="50" width="50" alt="Fb"></a>
-			<a href="" style="position: absolute; left: 48%;"><img src="twitter.jpg" hieght="50" width="50" alt="Twitter"></a>
-			<a href="" style="position: absolute; left: 52%;"><img src="g+.png" hieght="50" width="50" alt="g+"></a>
-			<a href="" style="position: absolute; left: 56%;"><img src="linkedin.png" hieght="50" width="50" alt="Linkedin"></a>
-		</div>
-	</div>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
+    <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sell Products</a>
+    <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Chats</a>
+    <a href=" http://localhost/forum/main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+    <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Announcements</a>
+    <%if(locals.user) { %> <a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
+    
+  </div>
+</div>
+
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
+  <p class="w3-xlarge">ANYTHING AND EVERYTHING</p>
+  <%if(!locals.user) { %> <a href="http://localhost:4000/register"><button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button></a>  <% }  %>
+      
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>How it works</h1>
+      <h5 class="w3-padding-32"> Get started to login or signup. Buy products you need for affordable prices, sell stuff you don't need and make a profit out of it, discuss various issues in the forums and post any announcements necessary.    </h5>
+
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+   
+    <div class="w3-third w3-center">
+      <img src="images/logo.jpg" height="400 px" width="500 px"></i>
+    </div>
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+  <!--
+    <div class="w3-third w3-center">
+      <img src=""></i>
+    </div>
+    -->
+
+    <div class="w3-twothird">
+      <h1>About us</h1>
+      <h5 class="w3-padding-32">We are a group of 10 motivated youngsters with a vision of building a platform for our fellow students which can be used to ease and help their day to day lives.</h5>
+
+      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">PERSEVERANCE | EXCELLENCE | SERVICE</h1>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity"> 
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="www.pes.edu/">PES University</a></p>
+</footer>
+
+
+
 </body>
 </html>

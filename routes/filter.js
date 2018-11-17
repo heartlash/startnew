@@ -1,17 +1,17 @@
 var express = require('express');
 var auth = require('../middleware/auth');
-var buyrouter = express.Router();
+var filterrouter = express.Router();
 var userad = require('../models/userad');
-var filter = require('./filter')
-buyrouter.use((req, res, next) =>{
+
+
+filterrouter.use((req, res, next) =>{
 	auth.isloggedin(req, res, next);
 });
 
-buyrouter.use('/filter', filter);
-
-buyrouter.get('/', (req, res) =>{
-	console.log('GET /buy');
-	userad.find({}, function(err, results){
+filterrouter.post('/', (req, res) =>{
+	var stext = req.body.stext;
+	console.log('GET /buy search : ', stext);
+	userad.find({item: { $regex: '.*' + stext.toLowerCase() + '.*' } }, function(err, results){
 		if(err) throw err;
 		images = [];
 		items = [];
@@ -25,21 +25,20 @@ buyrouter.get('/', (req, res) =>{
 			sellers.push(result.seller)
 			ids.push(result._id)
 		}
-		console.log("images here : ", images);
-		res.render("buy.ejs", {
+		console.log("images here : ", items);
+		res.render("productfiltered.ejs", {
 			images : images,
 			user : req.user,
 			items : items,
 			descriptions : descriptions,
 			sellers : sellers,
-			ids : ids
-		});
+			ids : ids,
+			stext : stext
+
+			});
 	});
+
 	
 });
 
-
-
-
-
-module.exports = buyrouter;
+module.exports = filterrouter;

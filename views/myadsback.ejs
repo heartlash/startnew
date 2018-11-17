@@ -1,0 +1,44 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+<body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
+
+
+<% for(var result of results){
+
+	%><img src = "data:image/jpg;base64, <%=result.image%>" height="200 px" width="200 px"/>
+		<h1><%=result.item%></h1>
+	 	<h4><%=result.description%></h4>
+	 	<p><%=result.seller%></p>
+
+	 	<button id ="<%=result._id%>" data-ng-click="deletead($event);">Delete</button>
+
+	 	<br>
+	 	<br>
+    
+
+	<%
+
+}
+
+%>
+
+</body>
+
+<script>
+
+ var app = angular.module("StrengthValidationApp", []);
+    app.controller("StrengthValidationCtrl", function($http, $scope) {
+
+      $scope.deletead = function(event){
+       
+        console.log("deletead called : ", event.target.id);
+        $http.delete('/myads/' + event.target.id).then(function(message){
+          console.log("message in the controller : ", message);
+        });
+      };
+});
+</script>
+
+</html>

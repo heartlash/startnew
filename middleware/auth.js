@@ -2,6 +2,44 @@ var jwt = require('jwt-simple');
 var crypto = require('crypto');
 var secret = 'hotspotfuckspot';
 
+function isadminloggedin(req, res, next){
+
+	if(!req.cookies.seadmin) return res.redirect('/login');
+
+	next();
+	
+}
+function generatetokenadmin(userpass){
+	var tokenadmin = jwt.encode({
+		userpass : userpass
+	}, secret);
+	console.log("token made");
+	return {tokenadmin : tokenadmin};
+}
+function directadmin(res, next, token){
+
+	console.log("directadmin called");
+	var user = null;
+	try{
+		user = jwt.encode(tokenadmin, secret);
+	}
+	catch(err){
+		return next();
+	}
+	res.redirect('/');
+}
+function authenticateadmin(req, res, next){
+	if(req.body.adminname == 'admin' && req.body.adminpass == 'adminpass'){
+		console.log(req.body.adminname , ' ', req.body.adminpass);
+		var token = generatetokenadmin(req.body.adminpass);
+		res.cookie('seadmin', token.tokenadmin, {
+				httpOnly : true
+			});
+		res.redirect('/admin/control');
+	}
+	else res.redirect('http://localhost:4000/login');
+}
+
 function isloggedin(req, res, next){
 	if(!req.cookies.setok) return res.redirect('/login');
 	else {
@@ -100,5 +138,9 @@ module.exports = {
 	authorize : authorize,
 	authenticate : authenticate,
 	direct : direct,
-	isloggedin : isloggedin
+	isloggedin : isloggedin,
+	authenticateadmin : authenticateadmin,
+	directadmin : directadmin,
+	generatetokenadmin : generatetokenadmin,
+	isadminloggedin : isadminloggedin
 };

@@ -1,119 +1,98 @@
-<html>
-<head>
-	<title>Chats</title>
-	<style>
-		
-		body {
-			background-color: #92a8d1;
-  			margin: 0;
-  			font-family: 'Open Sans', sans-serif;
-  			font-size: 14px; 
-  			font-style: normal; 
-  			font-variant: normal;
-			}
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+a{text-decoration:none}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
+<div class="w3-top">
+  <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
+    <a href="http://localhost:4000/dashboard" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
+    <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sell Products</a>
+    <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Chats</a>
+    <a href="main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+    <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Announcements</a>
+    <%if(locals.user) { %> <a href="http://localhost:4000/myads" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My ads</a><a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
+    
+  </div>
+</div>
 
-		.topnav {
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			float: right;
-			width: 1350px;
-			height: 81px;
-			position: -webkit-sticky;
-			position: sticky;
-			top: 0;
- 			padding: 5px;
-  			background-color: white;
-			}
 
-		.topnav a {
-			float: right;
-  			color: black;
-  			text-align: center;
-  			padding: 14px 16px;
-  			text-decoration: none;
-  			font-size: 18px;
-			}
 
-		.topnav a:hover {
-  			color: #4a77d4;
-			}
+<!-- Header -->
+<header class="w3-container w3-red w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
+  <p class="w3-xlarge">MY CHATS</p>
+  
+</header>
 
-		.topnav a.active {
-  			color: black;
-			}	
 
-		.logo{
-			float: left;
-			top: 0;
-			width: 10px;
-			height: 5px;
-			position: sticky;
-			}
-
-		.main{
-    		text-align: center;
-    		color: black;
-			}
-
-		.rest{
-			background-color: #404144;
-			}
-
-		.info{
-			padding: 40px;
-			}
-
-		li{
-			font-style: italic;
-			font-family: garamond;
-			font-size: 20px;
-			text-align: left;
-			}
-
-	</style>
-</head>
-
-<body>
-
-<div class="topnav">
-		<a href="home3.html" style="float: left; position: sticky; top: 0;"><img src="images/logo.png" alt="Logo" height="65" width="130"></a>
-		<a href="">About</a>
-		<a href="">Contact</a>
-		<a href="http://localhost:4000/buy">Buy Products</a>
-		<a href="http://localhost:4000/sell">Post Ad</a>
-		<a href="">Announcements</a>
-		<a href="http://localhost:4000/dashboard/chat">Chat</a>
-  		<a href="http://localhost:4000/register">Login/Register</a>
-		</div>
-<h2> <%=user.username%> </h2> <a href="http://localhost:4000/logout">Logout</a>
-
-<h1 style="text-align: center;">All the chats appear here : <%=user.username%></h1>
-
-<!--
-		<div style="background-color: white; width: 200px; height: 150px; margin:0 auto; border-radius: 25px; border: 2px solid #73AD21; padding: 20px;">
--->
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="login">
+    
 
 <%
 shown = [] 
 for(var  chat of chats){
-	
-	if(chat.sender!= user.username){
-		if(!shown.includes(chat.sender)){
-		%><a href = "http://localhost:4000/dashboard/chat/<%=chat.sender%>"><h2><%=chat.sender%></h2></a><%
-		shown.push(chat.sender)
-		}
-	}	
+  
+  if(chat.sender!= user.username){
+    if(!shown.includes(chat.sender)){
+    %><a href = "http://localhost:4000/dashboard/chat/<%=chat.sender%>"><button><%=chat.sender%></button></a><%
+    shown.push(chat.sender)
+    }
+  } 
 
-	if(chat.receiver!= user.username){
-		if(!shown.includes(chat.receiver)){
-		%><a href = "http://localhost:4000/dashboard/chat/<%=chat.receiver%>"><h2><%=chat.receiver%></h2></a><%
-		shown.push(chat.receiver)
-		}
-	   
-	}
+  if(chat.receiver!= user.username){
+    if(!shown.includes(chat.receiver)){
+    %><a href = "http://localhost:4000/dashboard/chat/<%=chat.receiver%>"><button><%=chat.receiver%></button></a><%
+    shown.push(chat.receiver)
+    }
+     
+  }
 
-	}
+  }
 
 %>
 
+  </div>
+  
+    
+  </div>
+</div>
+
+  
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="www.pes.edu/">PES University</a></p>
+</footer>
+
+
+
 </body>
+
 </html>
+

@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-a{text-decoration:none;}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 </style>
@@ -34,30 +33,32 @@ a{text-decoration:none;}
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:64px 16px">
   <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
-  <p class="w3-xlarge">BUY PRODUCTS</p>
+  <p class="w3-xlarge">SEARCH RESULTS FOR  : <%=stext%></p>
  
 </header>
-<div class="search" align="center">
-<form method = "post" action = '/buy/filter'>
-<input type = "message" name = "stext" id ="searchbar" placeholder="Search query"/>
-<button type = "submit">Search</button>
-</form>
-</div>
+
+
+
 <!-- First Grid -->
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
-    <div class="login" >
+    <div class="login">
     
 
     <br>
     <br>
-
-    	<% for(var i=0; i < images.length; i++){
+    <div align="center">
+    <a href = "http://localhost:4000/buy" ><button class="btn btn-primary w3-red btn-block btn-large">Go back</button></a>
+    </div>
+    	<% 
+      %> <h2 align="center"><%=images.length%> result(s) found<h2><%
+      for(var i=0; i < images.length; i++){
 	%> 
+		
 		<div align="center">
-		<img src = "data:image/jpg;base64, <%=images[i]%>" height="350 px" width="500 px"/>
-		<h3><%=items[i]%></h3><h4> <%=descriptions[i]%></h4>
-    <p><a href="http://localhost:4000/dashboard/chat/<%=sellers[i]%>"><button><%=sellers[i]%></button></a></p>
+    <img src = "data:image/jpg;base64, <%=images[i]%>" height="350 px" width="500 px"/>
+    <h3><%=items[i]%></h3><h4> <%=descriptions[i]%></h4>
+    <p><a href="http://localhost:4000/dashboard/chat/<%=sellers[i]%>"><button class="btn btn-primary btn-small"><%=sellers[i]%></button></a></p>
     </div>
     <br>
     <br>

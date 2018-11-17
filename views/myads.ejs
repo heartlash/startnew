@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<title>Buy Products</title>
+<title>My Ads</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -19,12 +19,12 @@ a{text-decoration:none;}
 <div class="w3-top">
   <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
     <a href="http://localhost:4000/dashboard" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
-    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Buy Products</a>
+    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
     <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sell Products</a>
     <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Chats</a>
     <a href="main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
     <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Announcements</a>
-    <%if(locals.user) { %> <a href="http://localhost:4000/myads" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My ads</a><a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user) { %> <a href="http://localhost:4000/myads" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">My ads</a><a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
     <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
     
   </div>
@@ -34,38 +34,35 @@ a{text-decoration:none;}
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:64px 16px">
   <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
-  <p class="w3-xlarge">BUY PRODUCTS</p>
+  <p class="w3-xlarge">MY ADS</p>
  
 </header>
-<div class="search" align="center">
-<form method = "post" action = '/buy/filter'>
-<input type = "message" name = "stext" id ="searchbar" placeholder="Search query"/>
-<button type = "submit">Search</button>
-</form>
-</div>
+
 <!-- First Grid -->
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
-    <div class="login" >
+    <div class="login" align = "center" >
     
+
+    <% for(var result of results){
+
+  %><img src = "data:image/jpg;base64, <%=result.image%>" height="350 px" width="500 px"/>
+    <h1><%=result.item%></h1>
+    <h4><%=result.description%></h4>
+
+    <button id ="<%=result._id%>" data-ng-click="deletead($event);">Delete</button>
 
     <br>
     <br>
+    
 
-    	<% for(var i=0; i < images.length; i++){
-	%> 
-		<div align="center">
-		<img src = "data:image/jpg;base64, <%=images[i]%>" height="350 px" width="500 px"/>
-		<h3><%=items[i]%></h3><h4> <%=descriptions[i]%></h4>
-    <p><a href="http://localhost:4000/dashboard/chat/<%=sellers[i]%>"><button><%=sellers[i]%></button></a></p>
-    </div>
-    <br>
-    <br>
-    
-  <%}
-    
-     
+  <%
+
+}
+
 %>
+
+    
 
     </div>
    </div>
@@ -91,22 +88,21 @@ a{text-decoration:none;}
 
 </body>
 
-
 <script>
 
-
-  var app = angular.module("StrengthValidationApp", []);
+ var app = angular.module("StrengthValidationApp", []);
     app.controller("StrengthValidationCtrl", function($http, $scope) {
 
-      $scope.search = function(text){
-        
-        console.log("searchtext : ", text);
-        $http.get('/buy/' + text).then(function(message){
-          console.log("seach bar messa : ", message);
+      $scope.deletead = function(event){
+       
+        console.log("deletead called : ", event.target.id);
+        $http.delete('/myads/' + event.target.id).then(function(message){
+          console.log("message in the controller : ", message);
         });
       };
 });
-</script>
+</script> 
+
 
 
 </html>

@@ -37,6 +37,11 @@ app.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
+app.get('/admin/logout', (req, res) => {
+	res.clearCookie('seadmin');
+	res.redirect('/');
+});
+
 
 app.get('/', (req, res, next) => {
 	if(!req.cookies.setok) return next();
@@ -47,7 +52,14 @@ app.get('/', (req, res, next) => {
 		res.render('home.ejs');
 	});
 
-
+app.get('/admin', (req, res, next) =>{
+	if(!req.cookies.seadim) return next();
+	auth.directadmin(res, next, req.cookies.seadim)
+	},
+	(req, res) => {
+		res.render("admin.ejs");
+	
+});
 
 app.listen(4000);
 

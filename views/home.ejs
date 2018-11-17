@@ -23,7 +23,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Chats</a>
     <a href=" http://localhost/forum/main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
     <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Announcements</a>
-    <%if(locals.user) { %> <a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user) { %> <a href="http://localhost:4000/myads" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My ads</a><a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
     <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
     
   </div>

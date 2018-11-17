@@ -14,6 +14,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 </style>
 <body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
+
+<div class="w3-top">
+  <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
+    <a href="http://localhost:4000" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
+    <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sell Products</a>
+    <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Chats</a>
+    <a href=" http://localhost/forum/main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+    <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Announcements</a>
+    
+  </div>
+</div>
+
+
 <!-- Header -->
 <header class="w3-container w3-red w3-center" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
@@ -30,16 +44,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
           <form name="myform" name="myform" method="post" action="/login">
     <!--<input ng-model="emailaddr" required="true" id="email" autofocus="true" type="email" placeholder="Enter your Email-id" name="email" ng-model="mail"/><span ng-show="myform.myaddr.$error.email"/>Not a valid e-mail address</span>
     -->
-    <input ng-model="emailaddr" required="true" id="email" autofocus="true" type="text" placeholder="Enter your Email-id" name="email" ng-model="mail"/>
+    <input ng-model="emailaddr" required="true" id="email" autofocus="true" type="text" placeholder="Email-id/User-Name" name="email" ng-model="mail"/>
     <br><br>
      <input ng-model="password" required="true" id ="password" type="{{ typePassword ? 'text' : 'password' }}" name="password" placeholder="Enter your Password" ng-style="checkpwdStrength" ng-model="userPassword" ng-change="validationInputPwdText(userPassword)"/>
     <br><br>
-    <button class="btn btn-primary btn-block btn-large" ng-click="togglePassword()"><span>{{ typePassword ? 'Hide' : 'Show' }}</span> Password</button>
-    <br><br>
+    
     <p>{{message.data}}</p>
     <button id="loginbutt" ng-disabled="myform.$invalid" ng-model="login" class="btn btn-primary btn-block btn-large">Login</button>
-    <p style="font-size: 100%;color: black;text-align: center;"> New User ? <a href="http://localhost:4000/register" style="color: black;">Signup</a> </p>
+    <br><br>
   </form>
+  <button class="btn btn-primary w3-blue btn-block btn-large" ng-click="togglePassword()"><span>{{ typePassword ? 'Hide' : 'Show' }}</span> Password</button>
+    <br><br>
+    <p style="font-size: 100%;color: black;text-align: center;"> New User ? <a href="http://localhost:4000/register" style="color: black;">Signup</a> </p>
     </div>
    
    

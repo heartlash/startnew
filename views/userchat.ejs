@@ -1,27 +1,60 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-    <title>></title>
-</head>
-<body>
+<html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
 
-<h1>Logged in : <%=user.username%></h1>
-<h2>Send to : <%=user1.username%></h2>
+<div class="w3-top">
+  <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
+    <a href="http://localhost:4000/dashboard" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
+    <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sell Products</a>
+    <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Chats</a>
+    <a href="main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
+    <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Announcements</a>
+    <%if(locals.user) { %> <a href="http://localhost:4000/myads" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My ads</a><a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
+    
+  </div>
+</div>
 
-<h1>ChatWindow</h1>
+<!-- Header -->
+
+
+<header class="w3-container w3-red w3-center" style="padding:64px 16px">
+  <h1 class="w3-margin w3-jumbo">COLLEGE COMMUNITY</h1>
+  <p class="w3-xlarge">ChatWindow : <%=user1.username%></p>
+  
+</header>
+
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="login">
 
 <% for(var chat of chats){
     if(chat.sender==user.username){
         
-        %><h2>You : <%=chat.message%></h2>
+        %><p><strong><%=user.username%> : </strong> <%=chat.message%></p>
         <%
     }
 
     if(chat.sender==user1.username){
         
-        %><h2><%=user1.username%> : <%=chat.message%></h2>
+        %><p><strong><%=user1.username%> : </strong>  <%=chat.message%></h2>
         <%
     }
 }
@@ -33,12 +66,37 @@
 <div id ="typing"></div>
 <input type ="message" id = "messagebox" name = "messagebox"/>
 
-<button id = "sendbutton" name = "sendbutton">send</button>
+<button id = "sendbutton" name = "sendbutton">SEND</button>
+
+	
+	</div>
+	
+    
+  </div>
+</div>
+
+	
 
 
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="www.pes.edu/">PES University</a></p>
+</footer>
+
+
+
+</body>
 <script>
 
-var socket = io.connect("http://192.168.0.2:5000");
+var socket = io.connect("http://localhost:5000");
 var message = document.getElementById('messagebox');
 var sender = document.getElementById('loggedinuser');
 var receiver = document.getElementById('notloggedinuser');
@@ -54,7 +112,8 @@ sendbutt.addEventListener("click", function(){
 
 socket.on("chat", function(data){
     typing.innerHTML = "";
-	output.innerHTML += '<p><strong>' + data.sender + ':</strong>' + data.message + '</p>';
+	output.innerHTML += '<p><strong>' + data.sender + ' : </strong>' + data.message + '</p>';
+  message.value ="";
 
 });
 
@@ -68,7 +127,7 @@ socket.on("typing", function(data){
 
 
 </script>
-</body>
+
 </html>
 
-
+ 

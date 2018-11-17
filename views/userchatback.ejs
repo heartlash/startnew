@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <title>></title>
+</head>
+<body>
+
+<h1>Logged in : <%=user.username%></h1>
+<h2>Send to : <%=user1.username%></h2>
+
+<h1>ChatWindow</h1>
+
+<% for(var chat of chats){
+    if(chat.sender==user.username){
+        
+        %><h2>You : <%=chat.message%></h2>
+        <%
+    }
+
+    if(chat.sender==user1.username){
+        
+        %><h2><%=user1.username%> : <%=chat.message%></h2>
+        <%
+    }
+}
+
+%>
+<input type = "hidden" id ="loggedinuser" name = "loggedinuser" value ="<%=user.username%>"</input>
+<input type = "hidden" id ="notloggedinuser" name = "notloggedinuser" value ="<%=user1.username%>"</input>
+<div id = "output"></div>
+<div id ="typing"></div>
+<input type ="message" id = "messagebox" name = "messagebox"/>
+
+<button id = "sendbutton" name = "sendbutton">send</button>
+
+
+<script>
+
+var socket = io.connect("http://192.168.0.2:5000");
+var message = document.getElementById('messagebox');
+var sender = document.getElementById('loggedinuser');
+var receiver = document.getElementById('notloggedinuser');
+
+var sendbutt = document.getElementById('sendbutton');
+var output = document.getElementById('output');
+var typing = document.getElementById('typing');
+
+sendbutt.addEventListener("click", function(){
+	socket.emit("chat", {sender : sender.value, message : message.value,
+		receiver : receiver.value, time : Date.now()});
+});
+
+socket.on("chat", function(data){
+    typing.innerHTML = "";
+	output.innerHTML += '<p><strong>' + data.sender + ':</strong>' + data.message + '</p>';
+
+});
+
+message.addEventListener("keydown", function(){
+    socket.emit("typing", sender.value);
+});
+
+socket.on("typing", function(data){
+    typing.innerHTML = '<p><em>' + data + ' is typing....' + '<em></p>';
+});
+
+
+</script>
+</body>
+</html>
+
+

@@ -15,16 +15,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </style>
 <body ng-app="StrengthValidationApp" ng-controller="StrengthValidationCtrl">
 
+ 
 <div class="w3-top">
   <div class="w3-bar w3-light-grey w3-card w3-right-align w3-large">
-    <a href="home2.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    
+    <%if(locals.user!='admin') { %> 
+    <a href="http://localhost:4000" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
     <a href="http://localhost:4000/buy" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buy Products</a>
     <a href="http://localhost:4000/sell" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sell Products</a>
     <a href="http://localhost:4000/chat" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Chats</a>
     <a href="main_forum2.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Forum</a>
     <a href="http://localhost:4000/announcement" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Announcements</a>
-    <%if(locals.user) { %> <a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
-    <%if(locals.user) { %> <h5><%=user.username%></h5> <% }  %>
+    <a href="http://localhost:4000/myads" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">My ads</a><a href="http://localhost:4000/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>
+    <%if(locals.user!='admin') { %> <h5><%=user.username%></h5> <% }  %>
+    <%if(locals.user=='admin') { %> <a href="http://localhost:4000/admin/logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Sign Out</a> <% }  %>  
+    <%if(locals.user=='admin') { %> <h5>admin</h5> <% }  %>
+
     
   </div>
 </div>
@@ -37,8 +43,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
  
 </header>
 
+<%if(locals.user=='admin'){
+ %>
+ <div align="center">
+ <h1>Post Announcement</h1>
 
-<!-- First Grid -->
+  <form method = "post" action = "/admin/announcement">
+  <input type = "text" name ="headline"/> <br><br>
+  <textarea name ="announ"></textarea> <br><br>
+  <button type = "submit">Announce</button>
+
+  </form>
+  </div>
+  <br><br><br>
+
+<%
+}
+%>
+
+
+<!-- 
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
     <div class="login">
@@ -53,6 +77,34 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     </div>
    </div>
 </div>
+First Grid -->
+
+<% for(var result of results){
+
+  %>
+  <div align="center">
+  <h2 ng-model = "head" id ="head"><%=result.headline%></h2>
+  <h4><%=result.announce%></h4>
+
+  </div>
+<%
+  if(locals.user=='admin'){
+
+    %><div align="center">
+    <button id ="<%=result._id%>" data-ng-click="deleteannoun($event);">Delete</button>
+    <br><br><br>
+    </div>
+    <%
+  }
+
+ 
+
+  
+
+
+}
+
+%>
 
    
 
@@ -73,5 +125,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 
 
 </body>
+<script>
+
+
+  var app = angular.module("StrengthValidationApp", []);
+    app.controller("StrengthValidationCtrl", function($http, $scope) {
+
+      $scope.deleteannoun = function(event){
+       
+        console.log("deleteannoun called : ", event.target.id);
+        $http.delete('/admin/announcement/' + event.target.id).then(function(message){
+          console.log("message in the controller : ", message);
+        });
+      };
+});
+</script>
 
 </html>
